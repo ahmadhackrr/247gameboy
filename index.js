@@ -2,9 +2,10 @@ const mineflayer = require('mineflayer');
 const express = require('express');
 const app = express();
 
-// ✅ Required for Koyeb health check
+const PORT = process.env.PORT || 3000;
+
 app.get('/', (req, res) => res.send('🟢 Bot is online'));
-app.listen(3000, () => console.log('🌐 Web server running on port 3000...'));
+app.listen(PORT, () => console.log(`🌐 Web server running on port ${PORT}...`));
 
 function createBot() {
   const bot = mineflayer.createBot({
@@ -16,17 +17,14 @@ function createBot() {
   });
 
   bot.on('spawn', () => {
-    // 🔐 Sirf login (register pehle se ho chuka hai)
     setTimeout(() => {
       bot.chat('/login Pattoki42@@');
     }, 3000);
 
-    // 💬 Auto chat every 2 minutes
     setInterval(() => {
       bot.chat('My life is gaming');
     }, 120000);
 
-    // 🕴️ Anti-AFK movement
     let jumping = false;
     setInterval(() => {
       bot.setControlState('jump', jumping);
