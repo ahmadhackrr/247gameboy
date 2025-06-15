@@ -2,11 +2,10 @@ const mineflayer = require('mineflayer');
 const express = require('express');
 const app = express();
 
-// 🌐 Web server for uptime check
+// ✅ Required for Koyeb health check
 app.get('/', (req, res) => res.send('🟢 Bot is online'));
 app.listen(3000, () => console.log('🌐 Web server running on port 3000...'));
 
-// 🤖 Bot function
 function createBot() {
   const bot = mineflayer.createBot({
     host: 'blockbricks.sdlf.fun',
